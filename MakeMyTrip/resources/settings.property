@@ -1,0 +1,5 @@
+url=https://www.makemytrip.com/
+browserName=Chrome
+implicit.wait=10
+explicit.wait=20
+imgpath=C:/Users/krish/eclipse-workspace/MakeMyTrip/target/snaps
