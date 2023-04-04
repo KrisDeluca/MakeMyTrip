@@ -59,7 +59,9 @@ public class TravelDetails {
 	By classType = By.xpath("//ul[@class='guestCounter classSelect font12 darkText']//li");
 	
 	By flightElement = By.xpath("//div[@class='fsw_inner returnPersuasion']");
+	By multiFlightElement = By.xpath("//div[@class='anotherChild']");
 	By classElement = By.xpath("//div[@class='travellers gbTravellers']");
+	By multiClassElement = By.xpath("//div[@class='travellers ']");
 
 	By applyClass = By.xpath("//button[text()='APPLY']");
 	By faretype = By.xpath("(//ul[@class='specialFareNew'])/li/p");
@@ -98,6 +100,38 @@ public class TravelDetails {
 		driver.findElement(toTextbox).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
 	}
 
+	public void enterMultiFromOne(String fromPlaceOne) throws InterruptedException
+	{
+		driver.findElement(firstFrom).click();
+		driver.findElement(fromTextbox).sendKeys(fromPlaceOne);
+		Thread.sleep(2000);															//This will allow suggestions to load
+		driver.findElement(fromTextbox).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
+	}
+
+	public void enterMultiToOne(String toPlaceOne) throws InterruptedException
+	{
+		driver.findElement(firstTo).click();
+		driver.findElement(toTextbox).sendKeys(toPlaceOne);
+		Thread.sleep(2000);															//This will allow suggestions to load
+		driver.findElement(toTextbox).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
+	}
+	
+	public void enterMultiFromTwo(String fromPlaceTwo) throws InterruptedException
+	{
+		driver.findElement(firstFrom).click();
+		driver.findElement(fromTextbox).sendKeys(fromPlaceTwo);
+		Thread.sleep(2000);															//This will allow suggestions to load
+		driver.findElement(fromTextbox).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
+	}
+
+	public void enterMultiToTwo(String toPlaceTwo) throws InterruptedException
+	{
+		driver.findElement(firstTo).click();
+		driver.findElement(toTextbox).sendKeys(toPlaceTwo);
+		Thread.sleep(2000);															//This will allow suggestions to load
+		driver.findElement(toTextbox).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
+	}
+	
 	public void calendarOpen()
 	{
 		driver.findElement(retCal).click();
@@ -124,6 +158,17 @@ public class TravelDetails {
 	public String flightSnap(String filePath) throws Exception
 	{
 		WebElement flight = driver.findElement(flightElement);
+        int x = flight.getLocation().getX();
+        int y = flight.getLocation().getY();
+        int width = flight.getSize().getWidth();
+        int height = flight.getSize().getHeight();
+        ScreenCapture obj = new ScreenCapture(driver);
+        return obj.takePartialSnap(filePath, x, y, width, height);
+	}
+	
+	public String multiFlightSnap(String filePath) throws Exception
+	{
+		WebElement flight = driver.findElement(multiFlightElement);
         int x = flight.getLocation().getX();
         int y = flight.getLocation().getY();
         int width = flight.getSize().getWidth();
@@ -180,6 +225,19 @@ public class TravelDetails {
 	{
 		
 		WebElement classType = driver.findElement(classElement);
+        int x = classType.getLocation().getX();
+        int y = classType.getLocation().getY();
+        int width = classType.getSize().getWidth();
+        int height = classType.getSize().getHeight();
+        System.out.println(x+" "+y+" "+width+" "+height);
+        ScreenCapture obj = new ScreenCapture(driver);
+        return obj.takePartialSnap(filePath, x, y, width, height);
+	}
+	
+	public String multiClassSnap(String filePath) throws Exception
+	{
+		
+		WebElement classType = driver.findElement(multiClassElement);
         int x = classType.getLocation().getX();
         int y = classType.getLocation().getY();
         int width = classType.getSize().getWidth();

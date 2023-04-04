@@ -39,9 +39,9 @@ public class BrowserStart {
 			FirefoxOptions options=new FirefoxOptions();
 			options.addArguments("--disable-notifications");			
 			options.addArguments("--disable-popup-blocking");
-			FirefoxProfile profile = new FirefoxProfile();
-			profile.addExtension(new File("resources/AdsBlocker.crx"));//need to change code
-			options.setProfile(profile);
+			//FirefoxProfile profile = new FirefoxProfile();
+			//profile.addExtension(new File("resources/AdsBlocker.crx"));			//in-case you need to add extension
+			//options.setProfile(profile);
 			capabilities.merge(options);
 		}		
 		

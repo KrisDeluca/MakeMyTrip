@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import flightsObject.TravelDetails;
 import utilities.BaseClass;
@@ -26,16 +27,14 @@ public class RoundWayPgOne extends BaseClass {
 		obj.handleCalendar(fromDate);
 		obj.calendarOpen();
 		obj.handleCalendar(toDate);
-		test.log(Status.INFO, "Flight details");
-		test.addScreenCaptureFromPath(obj.flightSnap(read.getProperty("imgpath")+"/roundway/FlightDetails"),"Flight details");
+		test.log(Status.INFO, "Flight details", MediaEntityBuilder.createScreenCaptureFromPath(obj.flightSnap(read.getProperty("imgpath")+"/roundway/FlightDetails")).build());
 
 		obj.classOpen();
 		obj.noOfAdults(Integer.parseInt(adults));
 		obj.noOfChildren(Integer.parseInt(children));
 		obj.noOfInfants(Integer.parseInt(infants));
 		obj.chooseClass(classType);
-		test.log(Status.INFO, "Passenger Details");
-		test.addScreenCaptureFromPath(obj.classSnap(read.getProperty("imgpath")+"/roundway/PassengerDetails"),"Passenger Details");
+		test.log(Status.INFO, "Passenger Details", MediaEntityBuilder.createScreenCaptureFromPath(obj.classSnap(read.getProperty("imgpath")+"/roundway/PassengerDetails")).build());
 		obj.selectApply();		
 
 		test.log(Status.INFO, obj.chooseFareType(fareType));	//This will display and select relevant Fare type
