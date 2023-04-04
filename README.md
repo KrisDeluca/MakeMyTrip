@@ -1,6 +1,6 @@
 # MakeMyTrip
 
-The Flight Trip automation code for MakeMyTrip, which offers One Way, Round Trip, and Multi Trip options, is built using Java Selenium.
+The MakeMyTrip Flight Trip automation code is constructed utilizing Java Selenium and provides users with the choice of One Way, Round Trip, and Multi Trip options.
 
 The code is a Maven project that uses the POM model and incorporates Extent reports to generate test results with screenshots.
 
