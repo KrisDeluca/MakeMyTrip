@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -32,7 +33,10 @@ public class TravelDetails {
 	}
 
 	By popup = By.xpath("//span[@class='appSprite icAppDownload']");
-
+	
+	By multiSelect = By.xpath("//li[@data-cy='mulitiCityTrip']");
+	By scroll = By.xpath("(//span[text()='From'])[2]");
+		
 	By from = By.xpath("//input[@id='fromCity']");	
 	By firstFrom = By.xpath("//input[@id='fromAnotherCity0']");		//Found in Multi-way
 	By secondFrom = By.xpath("//input[@id='fromAnotherCity1']");	//Found in Multi-way
@@ -58,6 +62,10 @@ public class TravelDetails {
 	By infant = By.xpath("(//ul[@class='guestCounter font12 darkText gbCounter'])[3]//li");		//all <li> elements under infant tab
 	By classType = By.xpath("//ul[@class='guestCounter classSelect font12 darkText']//li");
 	
+	By multiAdult = By.xpath("(//ul[@class='guestCounter font12 darkText '])[1]//li");		//all <li> elements under adult tab
+	By multiChild = By.xpath("(//ul[@class='guestCounter font12 darkText '])[2]//li");		//all <li> elements under child tab
+	By multiInfant = By.xpath("(//ul[@class='guestCounter font12 darkText '])[3]//li");		//all <li> elements under infant tab
+	
 	By flightElement = By.xpath("//div[@class='fsw_inner returnPersuasion']");
 	By multiFlightElement = By.xpath("//div[@class='anotherChild']");
 	By classElement = By.xpath("//div[@class='travellers gbTravellers']");
@@ -82,6 +90,11 @@ public class TravelDetails {
 			popupStatus ="Popup didn't appeared";
 		}
 		return popupStatus;
+	}
+	
+	public void selectMulti()
+	{
+		driver.findElement(multiSelect).click();
 	}
 
 	public void enterFrom(String fromPlace) throws InterruptedException
@@ -110,15 +123,19 @@ public class TravelDetails {
 
 	public void enterMultiToOne(String toPlaceOne) throws InterruptedException
 	{
-		driver.findElement(firstTo).click();
 		driver.findElement(toTextbox).sendKeys(toPlaceOne);
 		Thread.sleep(2000);															//This will allow suggestions to load
 		driver.findElement(toTextbox).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
 	}
 	
 	public void enterMultiFromTwo(String fromPlaceTwo) throws InterruptedException
-	{
-		driver.findElement(firstFrom).click();
+	{	
+		WebElement scrollele = driver.findElement(scroll);
+		JavascriptExecutor executor = (JavascriptExecutor) driver;					// 2nd Calendar is getting intercepted, hence scrolling it to view
+		executor.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", scrollele);
+		Thread.sleep(3000);	
+		
+		driver.findElement(secondFrom).click();
 		driver.findElement(fromTextbox).sendKeys(fromPlaceTwo);
 		Thread.sleep(2000);															//This will allow suggestions to load
 		driver.findElement(fromTextbox).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
@@ -126,7 +143,6 @@ public class TravelDetails {
 
 	public void enterMultiToTwo(String toPlaceTwo) throws InterruptedException
 	{
-		driver.findElement(firstTo).click();
 		driver.findElement(toTextbox).sendKeys(toPlaceTwo);
 		Thread.sleep(2000);															//This will allow suggestions to load
 		driver.findElement(toTextbox).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
@@ -200,6 +216,27 @@ public class TravelDetails {
 	{
 		List <WebElement> infantlist = new ArrayList<WebElement>();
 		infantlist = driver.findElements(infant);				//stores all options for no.of infants
+		infantlist.get(infantCount).click();					//selects the relevant option for no.of infants
+	}
+	
+	public void multiNoOfAdults(int adultCount)
+	{
+		List <WebElement> adultlist = new ArrayList<WebElement>();
+		adultlist = driver.findElements(multiAdult);					//stores all options for no.of adults
+		adultlist.get(adultCount-1).click();					//selects the relevant option for no.of adults
+	}
+
+	public void multiNoOfChildren(int childCount)
+	{
+		List <WebElement> childlist = new ArrayList<WebElement>();
+		childlist = driver.findElements(multiChild);					//stores all options for no.of children
+		childlist.get(childCount).click();						//selects the relevant option for no.of children
+	}
+
+	public void multiNoOfInfants(int infantCount)
+	{
+		List <WebElement> infantlist = new ArrayList<WebElement>();
+		infantlist = driver.findElements(multiInfant);				//stores all options for no.of infants
 		infantlist.get(infantCount).click();					//selects the relevant option for no.of infants
 	}
 
