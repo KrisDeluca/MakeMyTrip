@@ -76,7 +76,8 @@ public class TravelDetails {
 	By offers = By.xpath("//li[@class=' '][2]");
 	By search = By.xpath("//a[text()='Search']");
 
-	By secondPage = By.xpath("//button[contains(text(),'OKAY, GOT IT!')]");
+	By secondPage = By.xpath("//span[@class='bgProperties icon20 overlayCrossIcon']");
+	By refresh = By.xpath("//button[contains(text(),'Refresh')]");
 
 	public String handlePopup()
 	{
@@ -266,7 +267,6 @@ public class TravelDetails {
         int y = classType.getLocation().getY();
         int width = classType.getSize().getWidth();
         int height = classType.getSize().getHeight();
-        System.out.println(x+" "+y+" "+width+" "+height);
         ScreenCapture obj = new ScreenCapture(driver);
         return obj.takePartialSnap(filePath, x, y, width, height);
 	}
@@ -279,7 +279,6 @@ public class TravelDetails {
         int y = classType.getLocation().getY();
         int width = classType.getSize().getWidth();
         int height = classType.getSize().getHeight();
-        System.out.println(x+" "+y+" "+width+" "+height);
         ScreenCapture obj = new ScreenCapture(driver);
         return obj.takePartialSnap(filePath, x, y, width, height);
 	}
@@ -326,9 +325,20 @@ public class TravelDetails {
 		driver.findElement(search).click();
 	}
 
-	public String pageTitle()
+	public String pageTitle() throws InterruptedException
 	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(secondPage));
+		try 
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(secondPage));
+		}
+		catch(Exception e)
+		{
+			System.out.println("Need to refresh the page");
+			driver.findElement(refresh).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(secondPage));
+			driver.findElement(secondPage).click();
+		}
+		Thread.sleep(2000);;
 		return driver.getTitle();
 	}
 }

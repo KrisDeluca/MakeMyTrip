@@ -15,8 +15,9 @@ public class OneWayPgOne extends BaseClass {
 	@Test(testName = "OneWay trip Booking", dataProvider = "dp")	
 	public void roundTrip(String iteration,String from, String to, String fromDate, String adults, String children, String infants, String classType, String fareType) throws Exception
 	{		
-		//Thread.sleep(5000);
-		//MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday
+		//Thread.sleep(5000);			//Sometimes ads need to be handled manually as they cannot be automated because they keep changing with time
+		Assert.assertEquals(driver.getTitle(), "MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday", "Page Loaded successfully");
+	
 		test = report.createTest("OneWay Trip Iteration: "+iteration);
 		TravelDetails obj = new TravelDetails(driver);
 
@@ -47,7 +48,7 @@ public class OneWayPgOne extends BaseClass {
 	public Object[][] dp() throws Exception
 	{
 		ExcelReader exObj = new ExcelReader();
-		Object [][] data=new Object[1][9];				//exObj.rowNum("MultiWay") change this to 1 for single iteration
+		Object [][] data=new Object[exObj.rowNum("MultiWay")][9];				//exObj.rowNum("MultiWay") change this to 1 for single iteration
 		for(int i=1;i<=data.length;i++)
 		{
 			for(int j=0;j<9;j++)

@@ -15,8 +15,9 @@ public class RoundWayPgOne extends BaseClass {
 	@Test(testName = "Round trip Booking", dataProvider = "dp")	
 	public void oneWayTrip(String iteration,String from, String to, String fromDate, String toDate, String adults, String children, String infants, String classType, String fareType) throws Exception
 	{		
-		//Thread.sleep(5000);
-		//MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday
+		//Thread.sleep(5000);			//Sometimes ads need to be handled manually as they cannot be automated because they keep changing with time
+		Assert.assertEquals(driver.getTitle(), "MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday", "Page Loaded successfully");
+	
 		test = report.createTest("Round Way Trip Iteration: "+iteration);
 		TravelDetails obj = new TravelDetails(driver);
 

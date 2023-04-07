@@ -15,10 +15,8 @@ public class MultiWayPgOne extends BaseClass {
 	@Test(testName = "Multi trip Booking", dataProvider = "dp")	
 	public void oneWayTrip(String iteration,String from1, String to1, String from2, String to2, String fromDate1, String fromDate2, String adults, String children, String infants, String classType, String fareType) throws Exception
 	{		
-		//Thread.sleep(5000);
-		//MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday
-		
-		// still need to add a single line code
+		//Thread.sleep(5000);			//Sometimes ads need to be handled manually as they cannot be automated because they keep changing with time
+		Assert.assertEquals(driver.getTitle(), "MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday", "Page Loaded successfully");
 		
 		test = report.createTest("Multi Way Trip Iteration: "+iteration);
 		TravelDetails obj = new TravelDetails(driver);
