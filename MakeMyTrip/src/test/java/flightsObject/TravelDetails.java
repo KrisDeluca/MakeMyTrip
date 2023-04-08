@@ -14,6 +14,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -76,9 +77,13 @@ public class TravelDetails {
 	By offers = By.xpath("//li[@class=' '][2]");
 	By search = By.xpath("//a[text()='Search']");
 
-	By secondPage = By.xpath("//span[@class='bgProperties icon20 overlayCrossIcon']");
-	By refresh = By.xpath("//button[contains(text(),'Refresh')]");
-
+	public void handleAds()
+	{
+		Actions actions = new Actions(driver);
+		actions.moveToElement(driver.findElement(By.tagName("body")), 0, 0);
+		actions.moveByOffset(90, 150).click().build().perform();					//this should click at the corner of the page for ads
+	}
+	
 	public String handlePopup()
 	{
 		String popupStatus="Popup appeared";
@@ -325,20 +330,4 @@ public class TravelDetails {
 		driver.findElement(search).click();
 	}
 
-	public String pageTitle() throws InterruptedException
-	{
-		try 
-		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(secondPage));
-		}
-		catch(Exception e)
-		{
-			System.out.println("Need to refresh the page");
-			driver.findElement(refresh).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(secondPage));
-			driver.findElement(secondPage).click();
-		}
-		Thread.sleep(2000);;
-		return driver.getTitle();
-	}
 }

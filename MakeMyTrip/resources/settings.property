@@ -1,5 +1,5 @@
 url=https://www.makemytrip.com/
 browserName=Chrome
 implicit.wait=10
-explicit.wait=20
+explicit.wait=15
 imgpath=C:/Users/krish/git/MakeMyTrip/MakeMyTrip/target/snaps

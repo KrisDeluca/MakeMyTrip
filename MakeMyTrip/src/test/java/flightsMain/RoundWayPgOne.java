@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+
+import flightsObject.FlightDetails;
 import flightsObject.TravelDetails;
 import utilities.BaseClass;
 import utilities.ExcelReader;
@@ -15,14 +17,13 @@ public class RoundWayPgOne extends BaseClass {
 	@Test(testName = "Round trip Booking", dataProvider = "dp")	
 	public void oneWayTrip(String iteration,String from, String to, String fromDate, String toDate, String adults, String children, String infants, String classType, String fareType) throws Exception
 	{		
-		//Thread.sleep(5000);			//Sometimes ads need to be handled manually as they cannot be automated because they keep changing with time
 		Assert.assertEquals(driver.getTitle(), "MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday", "Page Loaded successfully");
 	
 		test = report.createTest("Round Way Trip Iteration: "+iteration);
 		TravelDetails obj = new TravelDetails(driver);
-
+		obj.handleAds();								//This will handle the random ads which popup sometimes
 		test.log(Status.INFO, obj.handlePopup());		//This will handle popup and display relevant notification at same time
-
+														//Popup also gets handled with ads, but keeping it just in case
 		obj.enterFrom(from);
 		obj.enterTo(to);
 		obj.handleCalendar(fromDate);
@@ -43,7 +44,8 @@ public class RoundWayPgOne extends BaseClass {
 		test.log(Status.INFO, "All details");
 		obj.selectSearch();
 
-		Assert.assertEquals(obj.pageTitle(), "MakeMyTrip");
+		FlightDetails fobj = new FlightDetails(driver);
+		Assert.assertEquals(fobj.pageTitle(), "MakeMyTrip");
 	}
 
 	@DataProvider

@@ -22,7 +22,7 @@ public class BrowserStart {
 			ChromeOptions options=new ChromeOptions();
 			options.addArguments("--disable-notifications");			
 			options.addArguments("--disable-popup-blocking");
-			//options.addArguments("--headless");							// for browser-less execution
+			options.addArguments("--disable-blink-features=AutomationControlled");
 			options.addExtensions(new File("resources/AdsBlocker.crx"));			
 			driver = new ChromeDriver(options);
 		}
@@ -33,6 +33,7 @@ public class BrowserStart {
 			FirefoxOptions options=new FirefoxOptions();
 			options.addArguments("--disable-notifications");			
 			options.addArguments("--disable-popup-blocking");
+			options.addArguments("--disable-blink-features=AutomationControlled");
 			options.addArguments("--headless");			
 			driver = new FirefoxDriver(options);
 		}		
