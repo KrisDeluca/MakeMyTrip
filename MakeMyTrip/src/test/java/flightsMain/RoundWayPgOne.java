@@ -46,6 +46,10 @@ public class RoundWayPgOne extends BaseClass {
 
 		FlightDetails fobj = new FlightDetails(driver);
 		Assert.assertEquals(fobj.pageTitle(), "MakeMyTrip");
+		
+		fobj.getFlight("RoundWay", "RoundWay_"+iteration);
+		fobj.getTime("RoundWay_"+iteration);
+		fobj.getPrice("RoundWay", "RoundWay_"+iteration);
 	}
 
 	@DataProvider

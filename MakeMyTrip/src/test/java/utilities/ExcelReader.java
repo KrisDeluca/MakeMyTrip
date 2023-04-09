@@ -9,22 +9,29 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelReader {
 	
-	Workbook wb;
+	Workbook readWB, writeWB;
 	
 	public ExcelReader() throws FileNotFoundException, IOException
 	{
-		wb=new XSSFWorkbook(new FileInputStream("resources/UserData.xlsx"));
+		readWB=new XSSFWorkbook(new FileInputStream("resources/UserData.xlsx"));
+		writeWB=new XSSFWorkbook(new FileInputStream("resources/FlightData.xlsx"));
 	}
 	
 	public String readCell(String sheetName, int row, int col)
 	{
-		String data = wb.getSheet(sheetName).getRow(row).getCell(col).toString();
+		String data = readWB.getSheet(sheetName).getRow(row).getCell(col).toString();
 		return data;
 	}
 	
 	public int rowNum(String sheetName)
 	{
-		return wb.getSheet(sheetName).getLastRowNum();
+		return readWB.getSheet(sheetName).getLastRowNum();
+	}
+	
+	public void writeCell(String sheetName, int row, int col, String data)
+	{
+		writeWB.createSheet(sheetName);
+		writeWB.getSheet(sheetName).getRow(row).createCell(col).setCellValue(data);
 	}
 	
 }

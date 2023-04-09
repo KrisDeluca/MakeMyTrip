@@ -45,6 +45,10 @@ public class OneWayPgOne extends BaseClass {
 
 		FlightDetails fobj = new FlightDetails(driver);
 		Assert.assertEquals(fobj.pageTitle(), "MakeMyTrip");
+		
+		fobj.getFlight("OneWay", "OneWay_"+iteration);
+		fobj.getTime("OneWay_"+iteration);
+		fobj.getPrice("OneWay", "OneWay_"+iteration);
 	}
 
 	@DataProvider

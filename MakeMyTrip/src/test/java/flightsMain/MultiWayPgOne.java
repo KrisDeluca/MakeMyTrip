@@ -49,6 +49,10 @@ public class MultiWayPgOne extends BaseClass {
 
 		FlightDetails fobj = new FlightDetails(driver);
 		Assert.assertEquals(fobj.pageTitle(), "MakeMyTrip");
+		
+		fobj.getFlight("MultiWay", "MultiWay_"+iteration);
+		fobj.getTime("MultiWay_"+iteration);
+		fobj.getPrice("MultiWay", "MultiWay_"+iteration);
 	}
 
 	@DataProvider
