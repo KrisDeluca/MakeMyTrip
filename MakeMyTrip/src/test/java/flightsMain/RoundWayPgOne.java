@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
-import flightsObject.FlightDetails;
 import flightsObject.TravelDetails;
 import utilities.BaseClass;
 import utilities.ExcelReader;
@@ -44,19 +43,18 @@ public class RoundWayPgOne extends BaseClass {
 		test.log(Status.INFO, "All details");
 		obj.selectSearch();
 
-		FlightDetails fobj = new FlightDetails(driver);
-		Assert.assertEquals(fobj.pageTitle(), "MakeMyTrip");
+		Assert.assertEquals(obj.pageTitle(), "MakeMyTrip");
 		
-		fobj.getFlight("RoundWay", "RoundWay_"+iteration);
-		fobj.getTime("RoundWay_"+iteration);
-		fobj.getPrice("RoundWay", "RoundWay_"+iteration);
+		obj.getFlight("RoundWay", "RoundWay_"+iteration);
+		obj.getTime("RoundWay_"+iteration);
+		obj.getPrice("RoundWay", "RoundWay_"+iteration);
 	}
 
 	@DataProvider
 	public Object[][] dp() throws Exception
 	{
 		ExcelReader exObj = new ExcelReader();
-		Object [][] data=new Object[exObj.rowNum("RoundWay")][10];			//exObj.rowNum("MultiWay") change this to 1 for single iteration
+		Object [][] data=new Object[exObj.rowNum("RoundWay")][10];			//exObj.rowNum("RoundWay") change this to 1 for single iteration
 		for(int i=1;i<=data.length;i++)
 		{
 			for(int j=0;j<10;j++)

@@ -6,7 +6,7 @@
       <class name="flightsMain.OneWayPgOne">
         <methods>
           <include name="afterTest"/>
-          <include name="roundTrip" invocation-numbers="0"/>
+          <include name="roundTrip" invocation-numbers="0 1 2"/>
           <include name="beforeTest"/>
           <include name="afterMethod"/>
           <include name="beforeMethod"/>

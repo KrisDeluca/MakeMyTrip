@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
-import flightsObject.FlightDetails;
 import flightsObject.TravelDetails;
 import utilities.BaseClass;
 import utilities.ExcelReader;
@@ -43,19 +42,18 @@ public class OneWayPgOne extends BaseClass {
 		test.log(Status.INFO, "All details");
 		obj.selectSearch();
 
-		FlightDetails fobj = new FlightDetails(driver);
-		Assert.assertEquals(fobj.pageTitle(), "MakeMyTrip");
+		Assert.assertEquals(obj.pageTitle(), "MakeMyTrip");
 		
-		fobj.getFlight("OneWay", "OneWay_"+iteration);
-		fobj.getTime("OneWay_"+iteration);
-		fobj.getPrice("OneWay", "OneWay_"+iteration);
+		obj.getFlight("OneWay", "OneWay_"+iteration);
+		obj.getTime("OneWay_"+iteration);
+		obj.getPrice("OneWay", "OneWay_"+iteration);
 	}
 
 	@DataProvider
 	public Object[][] dp() throws Exception
 	{
 		ExcelReader exObj = new ExcelReader();
-		Object [][] data=new Object[exObj.rowNum("MultiWay")][9];				//exObj.rowNum("MultiWay") change this to 1 for single iteration
+		Object [][] data=new Object[1][9];				//exObj.rowNum("OneWay") change this to 1 for single iteration
 		for(int i=1;i<=data.length;i++)
 		{
 			for(int j=0;j<9;j++)

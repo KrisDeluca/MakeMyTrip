@@ -18,12 +18,14 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utilities.ExcelReader;
 import utilities.ScreenCapture;
 
 public class TravelDetails {
 
 	public WebDriver driver;
 	public WebDriverWait wait;
+	ExcelReader ex = new ExcelReader();
 
 	public TravelDetails(WebDriver driver) throws FileNotFoundException, IOException
 	{
@@ -34,10 +36,10 @@ public class TravelDetails {
 	}
 
 	By popup = By.xpath("//span[@class='appSprite icAppDownload']");
-	
+
 	By multiSelect = By.xpath("//li[@data-cy='mulitiCityTrip']");
 	By scroll = By.xpath("(//span[text()='From'])[2]");
-		
+
 	By from = By.xpath("//input[@id='fromCity']");	
 	By firstFrom = By.xpath("//input[@id='fromAnotherCity0']");		//Found in Multi-way
 	By secondFrom = By.xpath("//input[@id='fromAnotherCity1']");	//Found in Multi-way
@@ -62,11 +64,11 @@ public class TravelDetails {
 	By child = By.xpath("(//ul[@class='guestCounter font12 darkText gbCounter'])[2]//li");		//all <li> elements under child tab
 	By infant = By.xpath("(//ul[@class='guestCounter font12 darkText gbCounter'])[3]//li");		//all <li> elements under infant tab
 	By classType = By.xpath("//ul[@class='guestCounter classSelect font12 darkText']//li");
-	
+
 	By multiAdult = By.xpath("(//ul[@class='guestCounter font12 darkText '])[1]//li");		//all <li> elements under adult tab
 	By multiChild = By.xpath("(//ul[@class='guestCounter font12 darkText '])[2]//li");		//all <li> elements under child tab
 	By multiInfant = By.xpath("(//ul[@class='guestCounter font12 darkText '])[3]//li");		//all <li> elements under infant tab
-	
+
 	By flightElement = By.xpath("//div[@class='fsw_inner returnPersuasion']");
 	By multiFlightElement = By.xpath("//div[@class='anotherChild']");
 	By classElement = By.xpath("//div[@class='travellers gbTravellers']");
@@ -77,13 +79,27 @@ public class TravelDetails {
 	By offers = By.xpath("//li[@class=' '][2]");
 	By search = By.xpath("//a[text()='Search']");
 
-	public void handleAds()
+	By popupCross = By.xpath("//span[@class='bgProperties icon20 overlayCrossIcon']");
+	By refresh = By.xpath("//button[contains(text(),'Refresh')]");
+
+	By oneFlight = By.xpath("//p[@class='boldFont blackText airlineName']");
+	By roundFlight = By.xpath("//span[@class='boldFont blackText']");
+	By multiFlight = By.xpath("//span[@class='boldFont blackText airlineName']");
+
+	By time = By.xpath("//p[@class='appendBottom2 flightTimeInfo']");
+
+	By money = By.xpath("//p[@class='blackText fontSize18 blackFont white-space-no-wrap']");
+	By roundMoney = By.xpath("//p[@class='blackText fontSize16 blackFont']");
+
+	public void handleAds() throws InterruptedException
 	{
+		Thread.sleep(5000);
 		Actions actions = new Actions(driver);
 		actions.moveToElement(driver.findElement(By.tagName("body")), 0, 0);
-		actions.moveByOffset(90, 150).click().build().perform();					//this should click at the corner of the page for ads
+		actions.moveByOffset(-500, -200).click().build().perform();					//this should click at the corner of the page for ads
+		Thread.sleep(2000);
 	}
-	
+
 	public String handlePopup()
 	{
 		String popupStatus="Popup appeared";
@@ -97,7 +113,7 @@ public class TravelDetails {
 		}
 		return popupStatus;
 	}
-	
+
 	public void selectMulti()
 	{
 		driver.findElement(multiSelect).click();
@@ -133,14 +149,14 @@ public class TravelDetails {
 		Thread.sleep(2000);															//This will allow suggestions to load
 		driver.findElement(toTextbox).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
 	}
-	
+
 	public void enterMultiFromTwo(String fromPlaceTwo) throws InterruptedException
 	{	
 		WebElement scrollele = driver.findElement(scroll);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;					// 2nd Calendar is getting intercepted, hence scrolling it to view
 		executor.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", scrollele);
 		Thread.sleep(3000);	
-		
+
 		driver.findElement(secondFrom).click();
 		driver.findElement(fromTextbox).sendKeys(fromPlaceTwo);
 		Thread.sleep(2000);															//This will allow suggestions to load
@@ -153,7 +169,7 @@ public class TravelDetails {
 		Thread.sleep(2000);															//This will allow suggestions to load
 		driver.findElement(toTextbox).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
 	}
-	
+
 	public void calendarOpen()
 	{
 		driver.findElement(retCal).click();
@@ -176,27 +192,27 @@ public class TravelDetails {
 		days = driver.findElements(day);					//stores all options for no.of adults
 		days.get(userDay-1).click();
 	}
-	
+
 	public String flightSnap(String filePath) throws Exception
 	{
 		WebElement flight = driver.findElement(flightElement);
-        int x = flight.getLocation().getX();
-        int y = flight.getLocation().getY();
-        int width = flight.getSize().getWidth();
-        int height = flight.getSize().getHeight();
-        ScreenCapture obj = new ScreenCapture(driver);
-        return obj.takePartialSnap(filePath, x, y, width, height);
+		int x = flight.getLocation().getX();
+		int y = flight.getLocation().getY();
+		int width = flight.getSize().getWidth();
+		int height = flight.getSize().getHeight();
+		ScreenCapture obj = new ScreenCapture(driver);
+		return obj.takePartialSnap(filePath, x, y, width, height);
 	}
-	
+
 	public String multiFlightSnap(String filePath) throws Exception
 	{
 		WebElement flight = driver.findElement(multiFlightElement);
-        int x = flight.getLocation().getX();
-        int y = flight.getLocation().getY();
-        int width = flight.getSize().getWidth();
-        int height = flight.getSize().getHeight();
-        ScreenCapture obj = new ScreenCapture(driver);
-        return obj.takePartialSnap(filePath, x, y, width, height);
+		int x = flight.getLocation().getX();
+		int y = flight.getLocation().getY();
+		int width = flight.getSize().getWidth();
+		int height = flight.getSize().getHeight();
+		ScreenCapture obj = new ScreenCapture(driver);
+		return obj.takePartialSnap(filePath, x, y, width, height);
 	}
 
 	public void classOpen()
@@ -224,7 +240,7 @@ public class TravelDetails {
 		infantlist = driver.findElements(infant);				//stores all options for no.of infants
 		infantlist.get(infantCount).click();					//selects the relevant option for no.of infants
 	}
-	
+
 	public void multiNoOfAdults(int adultCount)
 	{
 		List <WebElement> adultlist = new ArrayList<WebElement>();
@@ -266,28 +282,28 @@ public class TravelDetails {
 
 	public String classSnap(String filePath) throws Exception
 	{
-		
+
 		WebElement classType = driver.findElement(classElement);
-        int x = classType.getLocation().getX();
-        int y = classType.getLocation().getY();
-        int width = classType.getSize().getWidth();
-        int height = classType.getSize().getHeight();
-        ScreenCapture obj = new ScreenCapture(driver);
-        return obj.takePartialSnap(filePath, x, y, width, height);
+		int x = classType.getLocation().getX();
+		int y = classType.getLocation().getY();
+		int width = classType.getSize().getWidth();
+		int height = classType.getSize().getHeight();
+		ScreenCapture obj = new ScreenCapture(driver);
+		return obj.takePartialSnap(filePath, x, y, width, height);
 	}
-	
+
 	public String multiClassSnap(String filePath) throws Exception
 	{
-		
+
 		WebElement classType = driver.findElement(multiClassElement);
-        int x = classType.getLocation().getX();
-        int y = classType.getLocation().getY();
-        int width = classType.getSize().getWidth();
-        int height = classType.getSize().getHeight();
-        ScreenCapture obj = new ScreenCapture(driver);
-        return obj.takePartialSnap(filePath, x, y, width, height);
+		int x = classType.getLocation().getX();
+		int y = classType.getLocation().getY();
+		int width = classType.getSize().getWidth();
+		int height = classType.getSize().getHeight();
+		ScreenCapture obj = new ScreenCapture(driver);
+		return obj.takePartialSnap(filePath, x, y, width, height);
 	}
-	
+
 	public void selectApply() throws Exception
 	{	
 		driver.findElement(applyClass).click();
@@ -328,6 +344,101 @@ public class TravelDetails {
 		Thread.sleep(2000);
 		driver.findElement(offers).click();				// search button was getting intercepted when fare-type was Doctors & nurses or Double seat
 		driver.findElement(search).click();
+	}
+
+	public String pageTitle() throws InterruptedException
+	{
+		try 
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(popupCross));
+			driver.findElement(popupCross).click();
+			Thread.sleep(4000);
+		}
+		catch(Exception e)
+		{
+			driver.findElement(refresh).click();										//Sometimes page shows refresh button due to internal error
+			System.out.println("Need to refresh the page");			
+			try
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(popupCross));		//Offers might not appear for certain set of testdata	
+				driver.findElement(popupCross).click();
+				Thread.sleep(4000);															//Allow details to load completely
+			}
+			catch(Exception ex)
+			{
+				System.out.println("Offer popup didn't appear");
+				Thread.sleep(4000);														//Allow details to load completely
+			}
+		}	
+		return driver.getTitle();
+	}
+
+	public void getTime(String sheetName) throws InterruptedException
+	{
+		System.out.println("Time");
+		List <WebElement> departTime = new ArrayList<WebElement>();
+		departTime = driver.findElements(time);
+		for (int i=0;i<departTime.size();i+=2)
+		{
+			ex.writeCell(sheetName, 2, departTime.get(i).getText());
+			System.out.println(departTime.get(i).getText());
+		}
+		Thread.sleep(3000);
+		List <WebElement> returnTime = new ArrayList<WebElement>();
+		returnTime = driver.findElements(time);
+		for (int i=1;i<returnTime.size();i+=2)
+		{
+			ex.writeCell(sheetName, 3, returnTime.get(i).getText());
+		}
+		Thread.sleep(3000);
+	}
+
+	public void getFlight(String trip, String sheetName) throws InterruptedException
+	{
+		System.out.println("Flight Name");
+		List <WebElement> flights = new ArrayList<WebElement>();
+
+		if (trip=="OneWay")
+		{
+			flights = driver.findElements(oneFlight);
+		}
+		else if (trip=="RoundWay")
+		{
+			flights = driver.findElements(roundFlight);
+		}
+		else
+		{
+			flights = driver.findElements(multiFlight);
+		}
+
+		for (int i=0;i<flights.size();i++)
+		{
+			ex.writeCell(sheetName, 1, flights.get(i).getText());
+			System.out.println(flights.get(i).getText());
+		}
+		Thread.sleep(3000);
+	}
+
+	public void getPrice(String trip, String sheetName) throws InterruptedException
+	{
+		System.out.println("Prices");
+		List <WebElement> price = new ArrayList<WebElement>();
+
+		if (trip=="RoundWay")
+		{
+			price = driver.findElements(roundMoney);
+		}
+		else
+		{
+			price = driver.findElements(money);
+		}
+
+		for (int i=0;i<price.size();i++)
+		{
+			ex.writeCell(sheetName, 4, price.get(i).getText());
+			System.out.println(price.get(i).getText());
+		}
+		Thread.sleep(3000);
 	}
 
 }

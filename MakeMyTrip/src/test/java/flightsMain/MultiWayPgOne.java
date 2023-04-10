@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
-import flightsObject.FlightDetails;
 import flightsObject.TravelDetails;
 import utilities.BaseClass;
 import utilities.ExcelReader;
@@ -47,12 +46,11 @@ public class MultiWayPgOne extends BaseClass {
 		test.log(Status.INFO, "All details");
 		obj.selectSearch();
 
-		FlightDetails fobj = new FlightDetails(driver);
-		Assert.assertEquals(fobj.pageTitle(), "MakeMyTrip");
+		Assert.assertEquals(obj.pageTitle(), "MakeMyTrip");
 		
-		fobj.getFlight("MultiWay", "MultiWay_"+iteration);
-		fobj.getTime("MultiWay_"+iteration);
-		fobj.getPrice("MultiWay", "MultiWay_"+iteration);
+		obj.getFlight("MultiWay", "MultiWay_"+iteration);
+		obj.getTime("MultiWay_"+iteration);
+		obj.getPrice("MultiWay", "MultiWay_"+iteration);
 	}
 
 	@DataProvider
