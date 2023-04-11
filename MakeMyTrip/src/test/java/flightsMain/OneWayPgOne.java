@@ -14,7 +14,7 @@ import utilities.ExcelReader;
 public class OneWayPgOne extends BaseClass {
 
 	@Test(testName = "OneWay trip Booking", dataProvider = "dp")	
-	public void roundTrip(String iteration,String from, String to, String fromDate, String adults, String children, String infants, String classType, String fareType) throws Exception
+	public void oneWayTrip(String iteration,String from, String to, String fromDate, String adults, String children, String infants, String classType, String fareType) throws Exception
 	{		
 		
 		Assert.assertEquals(driver.getTitle(), "MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday", "Page Loaded successfully");
@@ -44,16 +44,14 @@ public class OneWayPgOne extends BaseClass {
 
 		Assert.assertEquals(obj.pageTitle(), "MakeMyTrip");
 		
-		obj.getFlight("OneWay", "OneWay_"+iteration);
-		obj.getTime("OneWay_"+iteration);
-		obj.getPrice("OneWay", "OneWay_"+iteration);
+		obj.writeDetails("OneWay", "OneWay_"+iteration);
 	}
 
 	@DataProvider
 	public Object[][] dp() throws Exception
 	{
 		ExcelReader exObj = new ExcelReader();
-		Object [][] data=new Object[1][9];				//exObj.rowNum("OneWay") change this to 1 for single iteration
+		Object [][] data=new Object[exObj.rowNum("OneWay")][9];				//exObj.rowNum("OneWay") change this to 1 for single iteration
 		for(int i=1;i<=data.length;i++)
 		{
 			for(int j=0;j<9;j++)

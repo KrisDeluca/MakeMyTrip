@@ -14,7 +14,7 @@ import utilities.ExcelReader;
 public class RoundWayPgOne extends BaseClass {
 
 	@Test(testName = "Round trip Booking", dataProvider = "dp")	
-	public void oneWayTrip(String iteration,String from, String to, String fromDate, String toDate, String adults, String children, String infants, String classType, String fareType) throws Exception
+	public void roundWayTrip(String iteration,String from, String to, String fromDate, String toDate, String adults, String children, String infants, String classType, String fareType) throws Exception
 	{		
 		Assert.assertEquals(driver.getTitle(), "MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday", "Page Loaded successfully");
 	
@@ -45,9 +45,7 @@ public class RoundWayPgOne extends BaseClass {
 
 		Assert.assertEquals(obj.pageTitle(), "MakeMyTrip");
 		
-		obj.getFlight("RoundWay", "RoundWay_"+iteration);
-		obj.getTime("RoundWay_"+iteration);
-		obj.getPrice("RoundWay", "RoundWay_"+iteration);
+		obj.writeDetails("RoundWay", "RoundWay_"+iteration);
 	}
 
 	@DataProvider

@@ -25,7 +25,6 @@ public class TravelDetails {
 
 	public WebDriver driver;
 	public WebDriverWait wait;
-	ExcelReader ex = new ExcelReader();
 
 	public TravelDetails(WebDriver driver) throws FileNotFoundException, IOException
 	{
@@ -373,29 +372,11 @@ public class TravelDetails {
 		return driver.getTitle();
 	}
 
-	public void getTime(String sheetName) throws InterruptedException
+	public void writeDetails(String trip, String sheetName) throws Exception
 	{
-		System.out.println("Time");
-		List <WebElement> departTime = new ArrayList<WebElement>();
-		departTime = driver.findElements(time);
-		for (int i=0;i<departTime.size();i+=2)
-		{
-			ex.writeCell(sheetName, 2, departTime.get(i).getText());
-			System.out.println(departTime.get(i).getText());
-		}
-		Thread.sleep(3000);
-		List <WebElement> returnTime = new ArrayList<WebElement>();
-		returnTime = driver.findElements(time);
-		for (int i=1;i<returnTime.size();i+=2)
-		{
-			ex.writeCell(sheetName, 3, returnTime.get(i).getText());
-		}
-		Thread.sleep(3000);
-	}
+		ExcelReader ex = new ExcelReader(sheetName);
 
-	public void getFlight(String trip, String sheetName) throws InterruptedException
-	{
-		System.out.println("Flight Name");
+		//Flight Name
 		List <WebElement> flights = new ArrayList<WebElement>();
 
 		if (trip=="OneWay")
@@ -413,17 +394,30 @@ public class TravelDetails {
 
 		for (int i=0;i<flights.size();i++)
 		{
-			ex.writeCell(sheetName, 1, flights.get(i).getText());
-			System.out.println(flights.get(i).getText());
+			ex.writeCell(i+1, 1, flights.get(i).getText());
 		}
 		Thread.sleep(3000);
-	}
 
-	public void getPrice(String trip, String sheetName) throws InterruptedException
-	{
-		System.out.println("Prices");
+		//Departure Time
+		List <WebElement> departTime = new ArrayList<WebElement>();
+		departTime = driver.findElements(time);
+		for (int i=0,j=1 ; i<departTime.size() ; i+=2,j++)
+		{
+			ex.writeCell(j, 2, departTime.get(i).getText());
+		}
+		Thread.sleep(3000);
+
+		//DropTime
+		List <WebElement> returnTime = new ArrayList<WebElement>();
+		returnTime = driver.findElements(time);
+		for (int i=1,j=1 ; i<returnTime.size() ; i+=2,j++)
+		{
+			ex.writeCell(j, 3, returnTime.get(i).getText());
+		}
+		Thread.sleep(3000);
+
+		//Trip Prices
 		List <WebElement> price = new ArrayList<WebElement>();
-
 		if (trip=="RoundWay")
 		{
 			price = driver.findElements(roundMoney);
@@ -435,8 +429,7 @@ public class TravelDetails {
 
 		for (int i=0;i<price.size();i++)
 		{
-			ex.writeCell(sheetName, 4, price.get(i).getText());
-			System.out.println(price.get(i).getText());
+			ex.writeCell(i+1, 4, price.get(i).getText());
 		}
 		Thread.sleep(3000);
 	}

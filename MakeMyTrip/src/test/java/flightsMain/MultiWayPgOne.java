@@ -14,7 +14,7 @@ import utilities.ExcelReader;
 public class MultiWayPgOne extends BaseClass {
 
 	@Test(testName = "Multi trip Booking", dataProvider = "dp")	
-	public void oneWayTrip(String iteration,String from1, String to1, String from2, String to2, String fromDate1, String fromDate2, String adults, String children, String infants, String classType, String fareType) throws Exception
+	public void multiWayTrip(String iteration,String from1, String to1, String from2, String to2, String fromDate1, String fromDate2, String adults, String children, String infants, String classType, String fareType) throws Exception
 	{		
 		Assert.assertEquals(driver.getTitle(), "MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday", "Page Loaded successfully");
 		
@@ -48,9 +48,7 @@ public class MultiWayPgOne extends BaseClass {
 
 		Assert.assertEquals(obj.pageTitle(), "MakeMyTrip");
 		
-		obj.getFlight("MultiWay", "MultiWay_"+iteration);
-		obj.getTime("MultiWay_"+iteration);
-		obj.getPrice("MultiWay", "MultiWay_"+iteration);
+		obj.writeDetails("MultiWay", "MultiWay_"+iteration);
 	}
 
 	@DataProvider

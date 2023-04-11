@@ -10,11 +10,19 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelReader {
 
 	XSSFWorkbook readWB, writeWB;
+	Sheet sh;
+	int lastRow;
 
 	public ExcelReader() throws FileNotFoundException, IOException
 	{
 		readWB=new XSSFWorkbook(new FileInputStream("resources/UserData.xlsx"));
+	}
+
+	public ExcelReader(String sheetName) throws FileNotFoundException, IOException
+	{
 		writeWB=new XSSFWorkbook(new FileInputStream("resources/FlightData.xlsx"));
+		sh = writeWB.getSheet(sheetName);
+		lastRow = sh.getLastRowNum()+1;
 	}
 
 	public String readCell(String sheetName, int row, int col)
@@ -28,13 +36,12 @@ public class ExcelReader {
 		return readWB.getSheet(sheetName).getLastRowNum();
 	}
 
-	public void writeCell(String sheetName, int col, String data)
+	public void writeCell(int row, int col, String data) throws Exception
 	{
-		Sheet sh = writeWB.getSheet(sheetName);
-		sh.createRow(sh.getLastRowNum()+1).createCell(col).setCellValue(data);
-		try {
-			writeWB.write(new FileOutputStream("resources/FlightData.xlsx"));
-		} catch (Exception e) {}
+		sh.createRow(lastRow + row).createCell(col).setCellValue(data);
+		FileOutputStream fileout = new FileOutputStream("resources/FlightData.xlsx");
+		writeWB.write(fileout);
+		fileout.close();
 	}
 
 }
