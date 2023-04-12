@@ -36,9 +36,17 @@ public class ExcelReader {
 		return readWB.getSheet(sheetName).getLastRowNum();
 	}
 
-	public void writeCell(int row, int col, String data) throws Exception
+	public void writeNewCell(int row, int col, String data) throws Exception
 	{
 		sh.createRow(lastRow + row).createCell(col).setCellValue(data);
+		FileOutputStream fileout = new FileOutputStream("resources/FlightData.xlsx");
+		writeWB.write(fileout);
+		fileout.close();
+	}
+	
+	public void writeOldCell(int row, int col, String data) throws Exception
+	{
+		sh.getRow(lastRow + row).createCell(col).setCellValue(data);
 		FileOutputStream fileout = new FileOutputStream("resources/FlightData.xlsx");
 		writeWB.write(fileout);
 		fileout.close();

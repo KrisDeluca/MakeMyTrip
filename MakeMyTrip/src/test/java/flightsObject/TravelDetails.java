@@ -86,6 +86,7 @@ public class TravelDetails {
 	By multiFlight = By.xpath("//span[@class='boldFont blackText airlineName']");
 
 	By time = By.xpath("//p[@class='appendBottom2 flightTimeInfo']");
+	By secondFlight = By.xpath("//div[@class='makeFlex tab-bar radius2 bigShadow']//div[2]");
 
 	By money = By.xpath("//p[@class='blackText fontSize18 blackFont white-space-no-wrap']");
 	By roundMoney = By.xpath("//p[@class='blackText fontSize16 blackFont']");
@@ -151,7 +152,7 @@ public class TravelDetails {
 
 	public void enterMultiFromTwo(String fromPlaceTwo) throws InterruptedException
 	{	
-		WebElement scrollele = driver.findElement(scroll);
+		WebElement scrollele = driver.findElement(search);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;					// 2nd Calendar is getting intercepted, hence scrolling it to view
 		executor.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", scrollele);
 		Thread.sleep(3000);	
@@ -189,6 +190,7 @@ public class TravelDetails {
 
 		List <WebElement> days = new ArrayList<WebElement>();
 		days = driver.findElements(day);					//stores all options for no.of adults
+		wait.until(ExpectedConditions.elementToBeClickable(days.get(userDay-1)));
 		days.get(userDay-1).click();
 	}
 
@@ -204,7 +206,10 @@ public class TravelDetails {
 	}
 
 	public String multiFlightSnap(String filePath) throws Exception
-	{
+	{		
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+		Thread.sleep(3000);
+		
 		WebElement flight = driver.findElement(multiFlightElement);
 		int x = flight.getLocation().getX();
 		int y = flight.getLocation().getY();
@@ -281,7 +286,6 @@ public class TravelDetails {
 
 	public String classSnap(String filePath) throws Exception
 	{
-
 		WebElement classType = driver.findElement(classElement);
 		int x = classType.getLocation().getX();
 		int y = classType.getLocation().getY();
@@ -293,7 +297,8 @@ public class TravelDetails {
 
 	public String multiClassSnap(String filePath) throws Exception
 	{
-
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+		Thread.sleep(3000);
 		WebElement classType = driver.findElement(multiClassElement);
 		int x = classType.getLocation().getX();
 		int y = classType.getLocation().getY();
@@ -341,7 +346,11 @@ public class TravelDetails {
 	public void selectSearch() throws Exception
 	{
 		Thread.sleep(2000);
-		driver.findElement(offers).click();				// search button was getting intercepted when fare-type was Doctors & nurses or Double seat
+		WebElement scrollele = driver.findElement(search);
+		JavascriptExecutor executor = (JavascriptExecutor) driver;					// Scrolling to get proper screenshot
+		executor.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", scrollele);
+		
+		executor.executeScript("arguments[0].click();", driver.findElement(offers));			// search button was getting intercepted when fare-type was Doctors & nurses or Double seat
 		driver.findElement(search).click();
 	}
 
@@ -354,11 +363,11 @@ public class TravelDetails {
 			Thread.sleep(4000);
 		}
 		catch(Exception e)
-		{
-			driver.findElement(refresh).click();										//Sometimes page shows refresh button due to internal error
-			System.out.println("Need to refresh the page");			
+		{		
 			try
 			{
+				driver.findElement(refresh).click();										//Sometimes page shows refresh button due to internal error
+				System.out.println("Need to refresh the page");	
 				wait.until(ExpectedConditions.visibilityOfElementLocated(popupCross));		//Offers might not appear for certain set of testdata	
 				driver.findElement(popupCross).click();
 				Thread.sleep(4000);															//Allow details to load completely
@@ -370,6 +379,11 @@ public class TravelDetails {
 			}
 		}	
 		return driver.getTitle();
+	}
+	
+	public void secondSet()
+	{
+		driver.findElement(secondFlight).click();
 	}
 
 	public void writeDetails(String trip, String sheetName) throws Exception
@@ -394,27 +408,27 @@ public class TravelDetails {
 
 		for (int i=0;i<flights.size();i++)
 		{
-			ex.writeCell(i+1, 1, flights.get(i).getText());
+			ex.writeNewCell(i+1, 0, flights.get(i).getText());
 		}
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 
 		//Departure Time
 		List <WebElement> departTime = new ArrayList<WebElement>();
 		departTime = driver.findElements(time);
 		for (int i=0,j=1 ; i<departTime.size() ; i+=2,j++)
 		{
-			ex.writeCell(j, 2, departTime.get(i).getText());
+			ex.writeOldCell(j, 1, departTime.get(i).getText());
 		}
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 
 		//DropTime
 		List <WebElement> returnTime = new ArrayList<WebElement>();
 		returnTime = driver.findElements(time);
 		for (int i=1,j=1 ; i<returnTime.size() ; i+=2,j++)
 		{
-			ex.writeCell(j, 3, returnTime.get(i).getText());
+			ex.writeOldCell(j, 2, returnTime.get(i).getText());
 		}
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 
 		//Trip Prices
 		List <WebElement> price = new ArrayList<WebElement>();
@@ -429,9 +443,9 @@ public class TravelDetails {
 
 		for (int i=0;i<price.size();i++)
 		{
-			ex.writeCell(i+1, 4, price.get(i).getText());
+			ex.writeOldCell(i+1, 3, price.get(i).getText());
 		}
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 	}
 
 }

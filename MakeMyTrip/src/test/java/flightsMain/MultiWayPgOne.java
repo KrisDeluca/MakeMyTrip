@@ -31,14 +31,14 @@ public class MultiWayPgOne extends BaseClass {
 		obj.enterMultiFromTwo(from2);
 		obj.enterMultiToTwo(to2);
 		obj.handleCalendar(fromDate2);
-		test.log(Status.INFO, "Flight details", MediaEntityBuilder.createScreenCaptureFromPath(obj.multiFlightSnap(read.getProperty("imgpath")+"/roundway/FlightDetails")).build());
+		test.log(Status.INFO, "Flight details", MediaEntityBuilder.createScreenCaptureFromPath(obj.multiFlightSnap(read.getProperty("imgpath")+"/multiway/FlightDetails")).build());
 
 		obj.classOpen();
 		obj.multiNoOfAdults(Integer.parseInt(adults));
 		obj.multiNoOfChildren(Integer.parseInt(children));
 		obj.multiNoOfInfants(Integer.parseInt(infants));
 		obj.chooseClass(classType);
-		test.log(Status.INFO, "Passenger Details", MediaEntityBuilder.createScreenCaptureFromPath(obj.multiClassSnap(read.getProperty("imgpath")+"/oneway/PassengerDetails")).build());
+		test.log(Status.INFO, "Passenger Details", MediaEntityBuilder.createScreenCaptureFromPath(obj.multiClassSnap(read.getProperty("imgpath")+"/multiway/PassengerDetails")).build());
 		obj.selectApply();		
 
 		test.log(Status.INFO, obj.chooseFareType(fareType));	//This will display and select relevant Fare type
@@ -48,6 +48,8 @@ public class MultiWayPgOne extends BaseClass {
 
 		Assert.assertEquals(obj.pageTitle(), "MakeMyTrip");
 		
+		obj.writeDetails("MultiWay", "MultiWay_"+iteration);
+		obj.secondSet();
 		obj.writeDetails("MultiWay", "MultiWay_"+iteration);
 	}
 

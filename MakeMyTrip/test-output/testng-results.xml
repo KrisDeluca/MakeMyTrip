@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-04-11T14:59:54 IST" name="Default suite" finished-at="2023-04-11T15:02:56 IST" duration-ms="181642">
+  <suite started-at="2023-04-12T18:48:35 IST" name="Default suite" finished-at="2023-04-12T18:53:03 IST" duration-ms="267396">
     <groups>
     </groups>
-    <test started-at="2023-04-11T14:59:54 IST" name="Default test" finished-at="2023-04-11T15:02:56 IST" duration-ms="181642">
-      <class name="flightsMain.OneWayPgOne">
-        <test-method is-config="true" signature="beforeTest()[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd]" started-at="2023-04-11T14:59:54 IST" name="beforeTest" finished-at="2023-04-11T14:59:56 IST" duration-ms="2117" status="PASS">
+    <test started-at="2023-04-12T18:48:35 IST" name="Default test" finished-at="2023-04-12T18:53:03 IST" duration-ms="267396">
+      <class name="flightsMain.MultiWayPgOne">
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd]" started-at="2023-04-12T18:48:35 IST" name="beforeTest" finished-at="2023-04-12T18:48:36 IST" duration-ms="548" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd]" started-at="2023-04-11T14:59:58 IST" name="beforeMethod" finished-at="2023-04-11T15:00:13 IST" duration-ms="14741" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd]" started-at="2023-04-12T18:48:38 IST" name="beforeMethod" finished-at="2023-04-12T18:48:46 IST" duration-ms="8842" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="roundTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd]" started-at="2023-04-11T15:00:13 IST" name="roundTrip" data-provider="dp" finished-at="2023-04-11T15:00:56 IST" duration-ms="42897" status="PASS">
+        <test-method signature="multiWayTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd]" started-at="2023-04-12T18:48:46 IST" name="multiWayTrip" data-provider="dp" finished-at="2023-04-12T18:50:10 IST" duration-ms="83591" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -34,30 +34,45 @@
             </param>
             <param index="3">
               <value>
-                <![CDATA[23-May-2023]]>
+                <![CDATA[Delhi]]>
               </value>
             </param>
             <param index="4">
               <value>
-                <![CDATA[3]]>
+                <![CDATA[Mumbai]]>
               </value>
             </param>
             <param index="5">
               <value>
-                <![CDATA[2]]>
+                <![CDATA[23-July-2023]]>
               </value>
             </param>
             <param index="6">
               <value>
-                <![CDATA[2]]>
+                <![CDATA[3-August-2023]]>
               </value>
             </param>
             <param index="7">
               <value>
-                <![CDATA[Premium]]>
+                <![CDATA[3]]>
               </value>
             </param>
             <param index="8">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[Premium]]>
+              </value>
+            </param>
+            <param index="11">
               <value>
                 <![CDATA[Regular]]>
               </value>
@@ -65,23 +80,23 @@
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- roundTrip -->
-        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd]" started-at="2023-04-11T15:00:56 IST" name="afterMethod" finished-at="2023-04-11T15:00:56 IST" duration-ms="318" status="PASS">
+        </test-method> <!-- multiWayTrip -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd]" started-at="2023-04-12T18:50:10 IST" name="afterMethod" finished-at="2023-04-12T18:50:10 IST" duration-ms="410" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=roundTrip status=SUCCESS method=OneWayPgOne.roundTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd] output={null}]]]>
+                <![CDATA[[TestResult name=multiWayTrip status=SUCCESS method=MultiWayPgOne.multiWayTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd]" started-at="2023-04-11T15:00:56 IST" name="beforeMethod" finished-at="2023-04-11T15:01:01 IST" duration-ms="4684" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd]" started-at="2023-04-12T18:50:10 IST" name="beforeMethod" finished-at="2023-04-12T18:50:16 IST" duration-ms="5060" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="roundTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd]" started-at="2023-04-11T15:01:01 IST" name="roundTrip" data-provider="dp" finished-at="2023-04-11T15:02:07 IST" duration-ms="66448" status="PASS">
+        <test-method signature="multiWayTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd]" started-at="2023-04-12T18:50:16 IST" name="multiWayTrip" data-provider="dp" finished-at="2023-04-12T18:51:32 IST" duration-ms="76232" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -90,64 +105,79 @@
             </param>
             <param index="1">
               <value>
-                <![CDATA[Chennai]]>
+                <![CDATA[Jaipur]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[Delhi]]>
+                <![CDATA[Ahmedabad]]>
               </value>
             </param>
             <param index="3">
               <value>
-                <![CDATA[2-June-2023]]>
+                <![CDATA[Ahmedabad]]>
               </value>
             </param>
             <param index="4">
               <value>
-                <![CDATA[3]]>
+                <![CDATA[Agra]]>
               </value>
             </param>
             <param index="5">
               <value>
-                <![CDATA[0]]>
+                <![CDATA[17-June-2023]]>
               </value>
             </param>
             <param index="6">
               <value>
-                <![CDATA[0]]>
+                <![CDATA[30-June-2023]]>
               </value>
             </param>
             <param index="7">
               <value>
-                <![CDATA[Flexible]]>
+                <![CDATA[3]]>
               </value>
             </param>
             <param index="8">
               <value>
-                <![CDATA[Senior Citizens]]>
+                <![CDATA[0]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[Flexible]]>
+              </value>
+            </param>
+            <param index="11">
+              <value>
+                <![CDATA[Student]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- roundTrip -->
-        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd]" started-at="2023-04-11T15:02:07 IST" name="afterMethod" finished-at="2023-04-11T15:02:07 IST" duration-ms="309" status="PASS">
+        </test-method> <!-- multiWayTrip -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd]" started-at="2023-04-12T18:51:32 IST" name="afterMethod" finished-at="2023-04-12T18:51:32 IST" duration-ms="338" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=roundTrip status=SUCCESS method=OneWayPgOne.roundTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd] output={null}]]]>
+                <![CDATA[[TestResult name=multiWayTrip status=SUCCESS method=MultiWayPgOne.multiWayTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd]" started-at="2023-04-11T15:02:07 IST" name="beforeMethod" finished-at="2023-04-11T15:02:13 IST" duration-ms="5471" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd]" started-at="2023-04-12T18:51:32 IST" name="beforeMethod" finished-at="2023-04-12T18:51:39 IST" duration-ms="6691" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="roundTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd]" started-at="2023-04-11T15:02:13 IST" name="roundTrip" data-provider="dp" finished-at="2023-04-11T15:02:54 IST" duration-ms="41445" status="PASS">
+        <test-method signature="multiWayTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd]" started-at="2023-04-12T18:51:39 IST" name="multiWayTrip" data-provider="dp" finished-at="2023-04-12T18:53:01 IST" duration-ms="82187" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -166,54 +196,69 @@
             </param>
             <param index="3">
               <value>
-                <![CDATA[3-May-2023]]>
+                <![CDATA[Chennai]]>
               </value>
             </param>
             <param index="4">
               <value>
-                <![CDATA[2]]>
+                <![CDATA[Delhi]]>
               </value>
             </param>
             <param index="5">
               <value>
-                <![CDATA[0]]>
+                <![CDATA[3-May-2023]]>
               </value>
             </param>
             <param index="6">
               <value>
-                <![CDATA[0]]>
+                <![CDATA[13-June-2023]]>
               </value>
             </param>
             <param index="7">
               <value>
-                <![CDATA[Economy]]>
+                <![CDATA[1]]>
               </value>
             </param>
             <param index="8">
               <value>
-                <![CDATA[Doctors & Nurses]]>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[0]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[Economy]]>
+              </value>
+            </param>
+            <param index="11">
+              <value>
+                <![CDATA[Regular]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- roundTrip -->
-        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd]" started-at="2023-04-11T15:02:54 IST" name="afterMethod" finished-at="2023-04-11T15:02:55 IST" duration-ms="290" status="PASS">
+        </test-method> <!-- multiWayTrip -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd]" started-at="2023-04-12T18:53:01 IST" name="afterMethod" finished-at="2023-04-12T18:53:01 IST" duration-ms="439" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=roundTrip status=SUCCESS method=OneWayPgOne.roundTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd] output={null}]]]>
+                <![CDATA[[TestResult name=multiWayTrip status=SUCCESS method=MultiWayPgOne.multiWayTrip(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="afterTest()[pri:0, instance:flightsMain.OneWayPgOne@4d154ccd]" started-at="2023-04-11T15:02:55 IST" name="afterTest" finished-at="2023-04-11T15:02:56 IST" duration-ms="1179" status="PASS">
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:flightsMain.MultiWayPgOne@4d154ccd]" started-at="2023-04-12T18:53:01 IST" name="afterTest" finished-at="2023-04-12T18:53:03 IST" duration-ms="1394" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
-      </class> <!-- flightsMain.OneWayPgOne -->
+      </class> <!-- flightsMain.MultiWayPgOne -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
