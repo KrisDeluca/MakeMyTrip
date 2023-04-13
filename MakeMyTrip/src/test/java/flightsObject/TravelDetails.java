@@ -102,14 +102,14 @@ public class TravelDetails {
 
 	public String handlePopup()
 	{
-		String popupStatus="Popup appeared";
+		String popupStatus="AD popped up";
 		try
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(popup));		//this will handle the popup if it appears
 		}
 		catch(NoSuchElementException e)
 		{
-			popupStatus ="Popup didn't appeared";
+			popupStatus ="AD didn't popped up";
 		}
 		return popupStatus;
 	}
