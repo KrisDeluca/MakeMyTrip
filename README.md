@@ -8,4 +8,4 @@ The test data, including user inputs such as destinations, dates, and passenger 
 
 The code includes various customizations, such as extensions for handling dynamic website advertisements, generating reports with screenshots, and cropping screenshots of specific elements.
 
-Additionally, screen recordings of the test run will be added as the code is updated.
+Additionally, screen recordings of the test run is added in Main branch as the code is updated.
